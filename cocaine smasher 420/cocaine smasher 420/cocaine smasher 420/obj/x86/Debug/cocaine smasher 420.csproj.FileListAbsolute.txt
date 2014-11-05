@@ -1,0 +1,9 @@
+C:\Users\eahscs\Desktop\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\obj\x86\Debug\cocaine smasher 420.csprojResolveAssemblyReference.cache
+C:\Users\eahscs\Desktop\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\eahscs\Desktop\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\cocaine smasher 420.exe
+C:\Users\eahscs\Desktop\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\cocaine smasher 420.pdb
+C:\Users\eahscs\Desktop\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\obj\x86\Debug\cocaine smasher 420.exe
+C:\Users\eahscs\Desktop\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\obj\x86\Debug\cocaine smasher 420.pdb
+C:\Users\eahscs\Desktop\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\Content\background.xnb
+C:\Users\eahscs\Desktop\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\Content\spritesheet.xnb
+C:\Users\eahscs\Desktop\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\Content\windows.xnb
