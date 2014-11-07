@@ -22,6 +22,7 @@ namespace cocaine_smasher_420
         float timeRemaining = 0.0f;
         float TimePerNewTarget = 0.20f;
         public Boolean isFirstRun = true;
+      
         public Bug(
            Vector2 location,
            Texture2D texture,
@@ -34,12 +35,9 @@ namespace cocaine_smasher_420
 
         public override void Update(GameTime gameTime)
         {
-          if(Location.Y < -50 && velocity.Y <0) velocity *= new Vector2(1,-1);
-          if (Location.Y > 470 && velocity.Y > 0) velocity *= new Vector2(1, -1);
-           
-           
          
-            if (timeRemaining == 0.0f)
+           
+         if (timeRemaining == 0.0f)
             {
                NewTarget();
                 timeRemaining = TimePerNewTarget;
@@ -53,10 +51,10 @@ namespace cocaine_smasher_420
         {
             Vector2 target;
             if (Velocity.X > 0)
-                target = new Vector2(Location.X + 400, Location.Y + rand.Next(-100, 100));
+                target = new Vector2(Location.X + 400, Location.Y + rand.Next(-150, 150));
             else
             {
-                target = new Vector2(Location.X - 400, Location.Y + rand.Next(-100, 100));
+                target = new Vector2(Location.X - 400, Location.Y + rand.Next(-150, 150));
                 this.FlipHorizontal = false;
             }
             Vector2 vel = target - Location;
@@ -64,6 +62,10 @@ namespace cocaine_smasher_420
             vel *= 100;
             Velocity = vel;
             Rotation = (float)Math.Atan2(vel.Y, vel.X);
+        }
+        public void Splat()
+        {
+            this.frames[0] = new Rectangle(0, 150, 100, 100);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

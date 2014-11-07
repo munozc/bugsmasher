@@ -18,19 +18,19 @@ namespace cocaine_smasher_420
         Texture2D background, spritesheet;
         Random rand = new Random(System.Environment.TickCount);
         List<Bug> bugs = new List<Bug>();
+        Sprite hand;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            this.Window.AllowUserResizing = true;
-            this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
-            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferHeight = 988;
+            graphics.PreferredBackBufferWidth = 1680;
+            
+            graphics.ApplyChanges();
+          
             Content.RootDirectory = "Content";
         }
 
-        void Window_ClientSizeChanged(object sender, EventArgs e)
-        {
-            graphics = new GraphicsDeviceManager(this);
-        }
+        
         protected override void Initialize()
         {
             
@@ -45,14 +45,15 @@ namespace cocaine_smasher_420
             background = Content.Load<Texture2D>("background");
             spritesheet = Content.Load<Texture2D>("spritesheet");
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            hand = new Sprite(new Vector2(500,500), spritesheet, new Rectangle(137,200,64,64),new Vector2(0,0)); 
+            
             for (int gridx = 0; gridx < 10; gridx++)
             {
                 int tempx = (gridx * 45)+rand.Next(-15,15);
 
-                for (int gridY = 0; gridY < 10; gridY++)
+                for (int gridY = 0; gridY < 15; gridY++)
                 {
-                    int tempY = (gridY * 45) + rand.Next(-15, 15);
+                    int tempY = ((gridY * 45) + rand.Next(-15, 15))+170;
                     
                     int bugX = rand.Next(0, 3);
                     int bugY = rand.Next(0, 2);
@@ -78,12 +79,17 @@ namespace cocaine_smasher_420
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            
+            MouseState ms = Mouse.GetState();
+            hand.Location = new Vector2(ms.X, ms.Y);
             for (int i = 0; i < bugs.Count; i++)
             {
+                if (bugs[i].IsBoxColliding(hand.BoundingBoxRect) && ms.LeftButton == ButtonState.Pressed)
+                {
+                    bugs[i].Splat();
+                }
                 bugs[i].Update(gameTime);
                 bugs[i].mood = BugMoods.Normal;
-                if (bugs[i].Location.X > this.Window.ClientBounds.Width +100) 
+                if (bugs[i].Location.X >1700) 
                 {
                     bugs[i].Velocity *= new Vector2(-1, 1);
                     bugs[i].FlipHorizontal = true; 
@@ -122,12 +128,12 @@ namespace cocaine_smasher_420
             spriteBatch.Begin();
             spriteBatch.Draw(background, new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), Color.White); // Draw the background at (0,0) - no crazy tinting
 
-
+           
             for (int i = 0; i < bugs.Count; i++)
             {
                 bugs[i].Draw(spriteBatch);
             }
-
+            hand.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
