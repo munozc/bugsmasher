@@ -22,7 +22,7 @@ namespace cocaine_smasher_420
         float timeRemaining = 0.0f;
         float TimePerNewTarget = 0.20f;
         public Boolean isFirstRun = true;
-      
+        public Boolean isAlive = true;
         public Bug(
            Vector2 location,
            Texture2D texture,
@@ -35,17 +35,19 @@ namespace cocaine_smasher_420
 
         public override void Update(GameTime gameTime)
         {
-         
-           
-         if (timeRemaining == 0.0f)
+            if (isAlive)
             {
-               NewTarget();
-                timeRemaining = TimePerNewTarget;
-            }
 
-             timeRemaining = MathHelper.Max(0, timeRemaining -
-            (float)gameTime.ElapsedGameTime.TotalSeconds);
-            base.Update(gameTime);
+                if (timeRemaining == 0.0f)
+                {
+                    NewTarget();
+                    timeRemaining = TimePerNewTarget;
+                }
+
+                timeRemaining = MathHelper.Max(0, timeRemaining -
+               (float)gameTime.ElapsedGameTime.TotalSeconds);
+                base.Update(gameTime);
+            }
         }
         public void NewTarget()
         {
@@ -59,17 +61,20 @@ namespace cocaine_smasher_420
             }
             Vector2 vel = target - Location;
             vel.Normalize();
-            vel *= 100;
+            vel *= 600;
             Velocity = vel;
             Rotation = (float)Math.Atan2(vel.Y, vel.X);
         }
         public void Splat()
         {
+            isAlive = false;
             this.frames[0] = new Rectangle(0, 150, 100, 100);
+         
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-         /*   if (mood == BugMoods.Angry)
+            /*
+            if (mood == BugMoods.Angry)
             {
                 this.TintColor = Color.Red;
                 this.Velocity *= new Vector2(1.1f, 1f);

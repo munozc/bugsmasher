@@ -45,15 +45,15 @@ namespace cocaine_smasher_420
             background = Content.Load<Texture2D>("background");
             spritesheet = Content.Load<Texture2D>("spritesheet");
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            hand = new Sprite(new Vector2(500,500), spritesheet, new Rectangle(137,200,64,64),new Vector2(0,0)); 
+            hand = new Sprite(new Vector2(500,500), spritesheet, new Rectangle(137,200,40,44),new Vector2(0,0)); 
             
             for (int gridx = 0; gridx < 10; gridx++)
             {
-                int tempx = (gridx * 45)+rand.Next(-15,15);
+                int tempx = (gridx * 60)+rand.Next(-15,15);
 
                 for (int gridY = 0; gridY < 15; gridY++)
                 {
-                    int tempY = ((gridY * 45) + rand.Next(-15, 15))+170;
+                    int tempY = ((gridY * 60) + rand.Next(-15, 15)+23);
                     
                     int bugX = rand.Next(0, 3);
                     int bugY = rand.Next(0, 2);
@@ -88,7 +88,9 @@ namespace cocaine_smasher_420
                     bugs[i].Splat();
                 }
                 bugs[i].Update(gameTime);
+                
                 bugs[i].mood = BugMoods.Normal;
+                
                 if (bugs[i].Location.X >1700) 
                 {
                     bugs[i].Velocity *= new Vector2(-1, 1);
@@ -106,7 +108,12 @@ namespace cocaine_smasher_420
                    
                     if (bugs[i].IsBoxColliding(bugs[j].BoundingBoxRect))
                     {
-                        bugs[i].mood = BugMoods.Angry;
+                        if (bugs[i].Location.X < bugs[j].Location.X)
+                        {
+                            bugs[j].Location += new Vector2(100,0);
+                            bugs[i].isAlive = false;
+                        }
+                        else bugs[j].isAlive = false;
                     }
                 }
             }
