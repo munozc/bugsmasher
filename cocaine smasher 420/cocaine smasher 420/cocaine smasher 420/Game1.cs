@@ -18,7 +18,11 @@ namespace cocaine_smasher_420
         Texture2D background, spritesheet;
         Random rand = new Random(System.Environment.TickCount);
         List<Bug> bugs = new List<Bug>();
-        Sprite hand;
+        Sprite bar1,bar3;
+        Sprite hand,progressbar,coner;
+        Vector2 barProgress = new Vector2(632,23);
+        int timer = 390;
+        int BugCount;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,12 +49,19 @@ namespace cocaine_smasher_420
             background = Content.Load<Texture2D>("background");
             spritesheet = Content.Load<Texture2D>("spritesheet");
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            hand = new Sprite(new Vector2(500,500), spritesheet, new Rectangle(137,200,40,44),new Vector2(0,0)); 
+            
+            hand = new Sprite(new Vector2(500,500), spritesheet, new Rectangle(137,200,40,44),new Vector2(0,0));
+            progressbar = new Sprite(new Vector2(600, 0), spritesheet, new Rectangle(0, 300, 465, 80), new Vector2(0, 0));
+            
+            bar1 = new Sprite(new Vector2(barProgress.X, barProgress.Y), spritesheet, new Rectangle(3, 384, 25, 37), new Vector2(0, 0));
+            coner = new Sprite(new Vector2(420, 420), spritesheet, new Rectangle(4, 258, 27, 35), new Vector2(0, 0));
+            bar3 = new Sprite(new Vector2(barProgress.X+timer, barProgress.Y), spritesheet, new Rectangle(64, 384, 15, 37), new Vector2(0, 0));
+            
             
             for (int gridx = 0; gridx < 10; gridx++)
             {
                 int tempx = (gridx * 60)+rand.Next(-15,15);
-
+                tempx -= 500;
                 for (int gridY = 0; gridY < 15; gridY++)
                 {
                     int tempY = ((gridY * 60) + rand.Next(-15, 15)+23);
@@ -64,6 +75,7 @@ namespace cocaine_smasher_420
                 }
 
             }
+            BugCount = bugs.Count;
         }
 
 
@@ -83,9 +95,10 @@ namespace cocaine_smasher_420
             hand.Location = new Vector2(ms.X, ms.Y);
             for (int i = 0; i < bugs.Count; i++)
             {
-                if (bugs[i].IsBoxColliding(hand.BoundingBoxRect) && ms.LeftButton == ButtonState.Pressed)
+                if (bugs[i].IsBoxColliding(hand.BoundingBoxRect) && ms.LeftButton == ButtonState.Pressed && bugs[i].Splatted == false)
                 {
                     bugs[i].Splat();
+                    BugCount--;
                 }
                 bugs[i].Update(gameTime);
                 
@@ -105,20 +118,26 @@ namespace cocaine_smasher_420
 
                 for (int j = 0; j < bugs.Count; j++)
                 {
-                   
+
                     if (bugs[i].IsBoxColliding(bugs[j].BoundingBoxRect))
                     {
                         if (bugs[i].Location.X < bugs[j].Location.X)
                         {
-                            bugs[j].Location += new Vector2(100,0);
+                           
                             bugs[i].isAlive = false;
+                            bugs[j].isAlive = true;
                         }
-                        else bugs[j].isAlive = false;
+                        else
+                        {
+                            bugs[j].isAlive = false;
+                            bugs[i].isAlive = true;
+                        }
                     }
                 }
             }
 
             base.Update(gameTime);
+            this.Window.Title = "Bugs Left: " + BugCount;
         }
 
         public void Method(GameTime gameTime)
@@ -140,9 +159,18 @@ namespace cocaine_smasher_420
             {
                 bugs[i].Draw(spriteBatch);
             }
-            hand.Draw(spriteBatch);
+              hand.Draw(spriteBatch);
+              coner.Draw(spriteBatch);
+              progressbar.Draw(spriteBatch);
+              bar1.Draw(spriteBatch);
+              bar3.Draw(spriteBatch);
+            
             spriteBatch.End();
-
+            
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+                spriteBatch.Draw(spritesheet, new Rectangle((int)barProgress.X + 24, (int)barProgress.Y-1, timer, 41), new Rectangle(64, 384, 16, 39), Color.White);
+            spriteBatch.End();
+            
             base.Draw(gameTime);
         }
     }

@@ -20,9 +20,11 @@ namespace cocaine_smasher_420
         public BugMoods mood = BugMoods.Normal;
         private Random rand = new Random((int)DateTime.UtcNow.Ticks);
         float timeRemaining = 0.0f;
-        float TimePerNewTarget = 0.20f;
+        float TimePerNewTarget = 1.0f;
         public Boolean isFirstRun = true;
         public Boolean isAlive = true;
+        public Boolean Splatted = false;
+       
         public Bug(
            Vector2 location,
            Texture2D texture,
@@ -35,7 +37,7 @@ namespace cocaine_smasher_420
 
         public override void Update(GameTime gameTime)
         {
-            if (isAlive)
+            if (isAlive && !Splatted)
             {
 
                 if (timeRemaining == 0.0f)
@@ -53,7 +55,8 @@ namespace cocaine_smasher_420
         {
             Vector2 target;
             if (Velocity.X > 0)
-                target = new Vector2(Location.X + 400, Location.Y + rand.Next(-150, 150));
+                //target = new Vector2(Location.X + 400, Location.Y + rand.Next(-150, 150));
+                target = new Vector2(Location.X + 400, rand.Next(0, 1680));
             else
             {
                 target = new Vector2(Location.X - 400, Location.Y + rand.Next(-150, 150));
@@ -67,9 +70,10 @@ namespace cocaine_smasher_420
         }
         public void Splat()
         {
-            isAlive = false;
+            
+            Splatted = true;
             this.frames[0] = new Rectangle(0, 150, 100, 100);
-         
+           
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
