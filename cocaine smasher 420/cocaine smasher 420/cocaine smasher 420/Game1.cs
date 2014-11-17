@@ -101,7 +101,7 @@ namespace cocaine_smasher_420
                     BugCount--;
                 }
                 bugs[i].Update(gameTime);
-                
+                //bugs[i].foodTarget(coner.Location.X, coner.Location.Y);
                 bugs[i].mood = BugMoods.Normal;
                 
                 if (bugs[i].Location.X >1700) 
@@ -123,7 +123,7 @@ namespace cocaine_smasher_420
                     {
                         if (bugs[i].Location.X < bugs[j].Location.X)
                         {
-                           
+
                             bugs[i].isAlive = false;
                             bugs[j].isAlive = true;
                         }
@@ -133,6 +133,7 @@ namespace cocaine_smasher_420
                             bugs[i].isAlive = true;
                         }
                     }
+                    else bugs[i].isAlive = true;
                 }
             }
 
