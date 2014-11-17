@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2014-11-11T07:21:30.1702-05:00</Time>
+      <Time>2014-11-17T07:46:48.3898-05:00</Time>
     </Item>
     <Item>
       <Source>spritesheet.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\Content\spritesheet.xnb</Output>
-      <Time>2014-11-11T07:21:30.1752-05:00</Time>
+      <Time>2014-11-17T07:46:48.6188-05:00</Time>
     </Item>
     <Item>
       <Source>windows.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\Content\windows.xnb</Output>
-      <Time>2014-11-11T07:21:30.1802-05:00</Time>
+      <Time>2014-11-17T07:46:48.7228-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -34,10 +34,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Eahscs\Desktop\bugsmasher\cocaine smasher 420\cocaine smasher 420\cocaine smasher 420\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

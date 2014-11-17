@@ -20,7 +20,7 @@ namespace cocaine_smasher_420
         public BugMoods mood = BugMoods.Normal;
         private Random rand = new Random((int)DateTime.UtcNow.Ticks);
         float timeRemaining = 0.0f;
-        float TimePerNewTarget = 2.0f;
+        float TimePerNewTarget = 1.0f;
         public Boolean isFirstRun = true;
         public Boolean isAlive = true;
         public Boolean Splatted = false;
@@ -72,6 +72,7 @@ namespace cocaine_smasher_420
         }
         public void foodTarget(float x, float y)
         {
+            manualTarget = true;
             Vector2  target = new Vector2(x, y);
             Vector2 vel = target - Location;
             vel.Normalize();
