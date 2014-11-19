@@ -55,30 +55,34 @@ namespace cocaine_smasher_420
         }
         public void NewTarget()
         {
-            Vector2 target;
+            Vector2 target = new Vector2(0,0);
             if (Velocity.X > 0)
-                //target = new Vector2(Location.X + 400, Location.Y + rand.Next(-150, 150));
+          
                 target = new Vector2(Location.X + 400, rand.Next(0, 1680));
-            else
+            else if (Velocity.X >0)
             {
-                target = new Vector2(Location.X - 400, Location.Y + rand.Next(-150, 150));
+                target = new Vector2(Location.X - 400, rand.Next(0, 1680));
                 this.FlipHorizontal = false;
             }
             Vector2 vel = target - Location;
             vel.Normalize();
             vel *= 600;
             Velocity = vel;
+           if (!Splatted)
             Rotation = (float)Math.Atan2(vel.Y, vel.X);
         }
         public void foodTarget(float x, float y)
         {
-            manualTarget = true;
-            Vector2  target = new Vector2(x, y);
-            Vector2 vel = target - Location;
-            vel.Normalize();
-            vel *= 610;
-            Velocity = vel;
-            Rotation = (float)Math.Atan2(vel.Y, vel.X);
+            if (!Splatted)
+            {
+                manualTarget = true;
+                Vector2 target = new Vector2(x, y);
+                Vector2 vel = target - Location;
+                vel.Normalize();
+                vel *= 610;
+                Velocity = vel;
+                Rotation = (float)Math.Atan2(vel.Y, vel.X);
+            }
         }
         public void Splat()
         {
